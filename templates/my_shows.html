@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>All Shows</h2>
+<h2>My Uploads</h2>
 
 <div class="grid">
   {% for show in shows %}
@@ -13,9 +13,6 @@
     <div id="modal-{{ show.id }}" class="modal">
         <div class="modal-content">
             <h2>{{ show.title }}</h2>
-            <p style="font-size:14px; color:gray;">
-    Uploaded by: {{ show.user.first_name|default:show.user.username }}
-</p>
             <p>{{ show.description }}</p>
 
             {% if show.watch_link %}
@@ -24,27 +21,24 @@
                 </a>
             {% endif %}
 
-            <!-- STEP 5 ADDED HERE -->
-            {% if show.user == user %}
-                <div style="margin-top:15px;">
-                    <a href="{% url 'update_show' show.id %}">
-                        <button>Edit</button>
-                    </a>
+            <div style="margin-top:15px;">
+                <a href="{% url 'update_show' show.id %}">
+                    <button>Edit</button>
+                </a>
 
-                    <a href="{% url 'delete_show' show.id %}">
-                        <button style="background:red; color:white;">
-                            Delete
-                        </button>
-                    </a>
-                </div>
-            {% endif %}
+                <a href="{% url 'delete_show' show.id %}">
+                    <button style="background:red; color:white;">
+                        Delete
+                    </button>
+                </a>
+            </div>
 
             <button onclick="closeModal('{{ show.id }}')">Close</button>
         </div>
     </div>
 
   {% empty %}
-    <p>No shows uploaded yet.</p>
+    <p>You have not uploaded anything yet.</p>
   {% endfor %}
 </div>
 

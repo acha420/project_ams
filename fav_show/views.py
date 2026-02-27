@@ -1,7 +1,8 @@
 
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 from .forms import CustomUserRegistrationForm
 from .forms import ShowForm
 from .models import Shows
@@ -39,3 +40,37 @@ def upload(request):
         form = ShowForm()
 
     return render(request, 'upload.html', {'form': form})
+
+@login_required
+def update_show(request, id):
+    show = get_object_or_404(Shows, id=id)
+
+    # Only uploader can update
+    if show.user != request.user:
+        return HttpResponseForbidden("You cannot edit this.")
+
+    if request.method == 'POST':
+        form = ShowForm(request.POST, request.FILES, instance=show)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ShowForm(instance=show)
+
+    return render(request, 'update.html', {'form': form})
+
+@login_required
+def delete_show(request, id):
+    shows = get_object_or_404(Shows, id=id)
+
+    # Only uploader can delete
+    if shows.user != request.user:
+        return HttpResponseForbidden("You cannot delete this.")
+
+    show.delete()
+    return redirect('home')
+
+@login_required
+def my_shows(request):
+    shows = Shows.objects.filter(user=request.user)
+    return render(request, 'my_shows.html', {'shows': shows})

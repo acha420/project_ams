@@ -106,7 +106,9 @@
 
     <div>
         {% if user.is_authenticated %}
-            <span>{{ user.username }}</span>
+            <span><a href="{% url 'my_shows' %}" style="color:white;">
+    {{ user.username }}
+</a></span>
             <form action="{% url 'logout' %}" method="post" style="display:inline;">
     {% csrf_token %}
     <button type="submit">Logout</button>
