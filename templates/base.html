@@ -107,7 +107,10 @@
     <div>
         {% if user.is_authenticated %}
             <span>{{ user.username }}</span>
-            <a href="{% url 'logout' %}">Logout</a>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
         {% else %}
             <a href="{% url 'login' %}">Login</a>
             <a href="{% url 'signup' %}">Signup</a>

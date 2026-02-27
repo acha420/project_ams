@@ -4,27 +4,31 @@
 <h2>All Shows</h2>
 
 <div class="grid">
-    {% for show in shows %}
-        <div class="card" onclick="openModal('{{ show.id }}')">
-            <img src="{{ show.image.url }}">
-            <h4>{{ show.title }}</h4>
+  {% for show in shows %}
+    <div class="card" onclick="openModal('{{ show.id }}')">
+        <img src="{{ show.image.url }}">
+        <h4>{{ show.title }}</h4>
+    </div>
+
+    <!-- Modal must be INSIDE the loop -->
+    <div id="modal-{{ show.id }}" class="modal">
+        <div class="modal-content">
+            <h2>{{ show.title }}</h2>
+            <p>{{ show.description }}</p>
+
+            {% if show.watch_link %}
+                <a href="{{ show.watch_link }}" target="_blank">
+                    <button>Watch Now</button>
+                </a>
+            {% endif %}
+
+            <button onclick="closeModal('{{ show.id }}')">Close</button>
         </div>
+    </div>
 
-        <div id="modal-{{ show.id }}" class="modal">
-            <div class="modal-content">
-                <h2>{{ show.title }}</h2>
-                <p>{{ show.description }}</p>
-
-                {% if show.watch_link %}
-                    <a href="{{ show.watch_link }}" target="_blank">
-                        <button>Watch Now</button>
-                    </a>
-                {% endif %}
-
-                <button onclick="closeModal('{{ show.id }}')">Close</button>
-            </div>
-        </div>
-    {% endfor %}
+  {% empty %}
+    <p>No shows uploaded yet.</p>
+  {% endfor %}
 </div>
 
 {% endblock %}
