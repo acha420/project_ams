@@ -67,7 +67,7 @@ def delete_show(request, id):
     if shows.user != request.user:
         return HttpResponseForbidden("You cannot delete this.")
 
-    show.delete()
+    shows.delete()
     return redirect('home')
 
 @login_required

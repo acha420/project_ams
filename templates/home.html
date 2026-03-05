@@ -14,8 +14,8 @@
         <div class="modal-content">
             <h2>{{ show.title }}</h2>
             <p style="font-size:14px; color:gray;">
-    Uploaded by: {{ show.user.first_name|default:show.user.username }}
-</p>
+                Uploaded by: {{ show.user.first_name|default:show.user.username }}
+            </p>
             <p>{{ show.description }}</p>
 
             {% if show.watch_link %}
@@ -24,7 +24,6 @@
                 </a>
             {% endif %}
 
-            <!-- STEP 5 ADDED HERE -->
             {% if show.user == user %}
                 <div style="margin-top:15px;">
                     <a href="{% url 'update_show' show.id %}">
@@ -47,5 +46,11 @@
     <p>No shows uploaded yet.</p>
   {% endfor %}
 </div>
+
+<section class="contact-section" id="contact-us">
+    <h3>Contact Us</h3>
+    <p>If you have any questions or feedback about Fav Show Vault, feel free to reach out:</p>
+    <p>Email: <a href="mailto:support@favshowvault.com">support@favshowvault.com</a></p>
+</section>
 
 {% endblock %}

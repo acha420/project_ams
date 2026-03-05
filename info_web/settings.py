@@ -112,10 +112,17 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
+"""
+Static files (CSS, JavaScript, Images)
+https://docs.djangoproject.com/en/6.0/howto/static-files/
+"""
 
 STATIC_URL = 'static/'
+
+# Extra places for collectstatic to find static files
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
