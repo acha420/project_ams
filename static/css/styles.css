@@ -1,13 +1,16 @@
 /* Global layout */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     color: #ffffff;
 
     /* Background image for every page */
-    background:  url('images/mikasa_dark_25_by_dinocozero_d7vhv6d.jpg') no-repeat center center fixed;
+    background: url('../images/mikasa_dark_25_by_dinocozero_d7vhv6d.jpg') no-repeat center center fixed;
     background-size: cover;
 }
+
+/* Navbar */
 
 nav {
     background: rgba(31, 31, 31, 0.95);
@@ -15,26 +18,50 @@ nav {
     display: flex;
     justify-content: space-between;
     backdrop-filter: blur(6px);
-    
+}
 
+nav div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 nav a {
     color: #ffffff;
     text-decoration: none;
     margin-right: 15px;
+    font-weight: 500;
 }
 
 nav a:hover {
     color: #00ffcc;
 }
 
+/* Avatar in navbar */
+
+nav img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00ffcc;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+nav img:hover {
+    transform: scale(1.1);
+}
+
+/* Page container */
+
 .container {
     padding: 20px;
     min-height: calc(100vh - 80px);
-    /* Leave space for the fixed "Contact Us" bar */
     padding-bottom: 140px;
 }
+
+/* Buttons */
 
 button {
     padding: 8px 15px;
@@ -43,14 +70,18 @@ button {
     color: #ffffff;
     cursor: pointer;
     border-radius: 4px;
+    transition: background 0.2s;
 }
 
 button:hover {
     background: #00ccaa;
 }
 
+/* Inputs */
+
 input,
-textarea {
+textarea,
+select {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -61,11 +92,14 @@ textarea {
 }
 
 /* Grid of shows */
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
+
+/* Show cards */
 
 .card {
     background: rgba(31, 31, 31, 0.9);
@@ -83,10 +117,13 @@ textarea {
 
 .card img {
     width: 100%;
+    height: 250px;
+    object-fit: cover;
     border-radius: 5px;
 }
 
 /* Modal */
+
 .modal {
     display: none;
     position: fixed;
@@ -100,12 +137,28 @@ textarea {
 .modal-content {
     background: #1f1f1f;
     width: 60%;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
+    margin: 8% auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    animation: popup 0.25s ease;
 }
 
-/* Contact section on home page */
+/* Modal animation */
+
+@keyframes popup {
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Contact section */
+
 .contact-section {
     position: fixed;
     left: 0;
@@ -117,7 +170,6 @@ textarea {
     padding: 16px 20px;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(6px);
-    border-radius: 0;
 }
 
 .contact-section h3 {
@@ -132,3 +184,14 @@ textarea {
     margin: 6px 0;
 }
 
+/* Profile image preview */
+
+#preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+    border: 3px solid #18f5c9;
+    box-shadow: 0 0 10px rgba(0,255,204,0.6);
+}

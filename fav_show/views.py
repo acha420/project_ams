@@ -6,6 +6,8 @@ from django.http import HttpResponseForbidden
 from .forms import CustomUserRegistrationForm
 from .forms import ShowForm
 from .models import Shows
+from .forms import UserUpdateForm, ProfileUpdateForm
+from .models import Profile
 
 def home(request):
     from .models import Shows
@@ -74,3 +76,34 @@ def delete_show(request, id):
 def my_shows(request):
     shows = Shows.objects.filter(user=request.user)
     return render(request, 'my_shows.html', {'shows': shows})
+
+
+
+
+
+@login_required
+def profile_update(request):
+
+    profile, created = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(
+            request.POST,
+            request.FILES,
+            instance=profile
+        )
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            return redirect('my_shows')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=profile)
+
+    return render(request, 'update_profile.html', {
+        'u_form': u_form,
+        'p_form': p_form
+    })
