@@ -4,9 +4,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     color: #ffffff;
-
-    /* Background image for every page */
-    background: url('../images/mikasa_dark_25_by_dinocozero_d7vhv6d.jpg') no-repeat center center fixed;
+    background: url('../images/background.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -59,6 +57,46 @@ nav img:hover {
     padding: 20px;
     min-height: calc(100vh - 80px);
     padding-bottom: 140px;
+    background: #000000;
+}
+
+/* Form section – center form in middle */
+
+.form-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.form-box {
+    width: 380px;
+    max-width: 90%;
+    padding: 35px;
+    background: rgba(31, 31, 31, 0.95);
+    border: 1px solid rgba(0, 255, 204, 0.25);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 14px;
+    border-radius: 4px;
+    border: 1px solid #333333;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
 }
 
 /* Buttons */
@@ -75,20 +113,6 @@ button {
 
 button:hover {
     background: #00ccaa;
-}
-
-/* Inputs */
-
-input,
-textarea,
-select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border: 1px solid #333333;
-    background: rgba(0, 0, 0, 0.5);
-    color: #ffffff;
 }
 
 /* Grid of shows */
@@ -129,8 +153,8 @@ select {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
     width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.8);
 }
 
@@ -140,11 +164,9 @@ select {
     margin: 8% auto;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
     animation: popup 0.25s ease;
 }
-
-/* Modal animation */
 
 @keyframes popup {
     from {
@@ -165,7 +187,6 @@ select {
     right: 0;
     bottom: 0;
     z-index: 50;
-
     margin-top: 0;
     padding: 16px 20px;
     background: rgba(0, 0, 0, 0.85);
@@ -193,5 +214,5 @@ select {
     object-fit: cover;
     margin-top: 10px;
     border: 3px solid #18f5c9;
-    box-shadow: 0 0 10px rgba(0,255,204,0.6);
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
 }

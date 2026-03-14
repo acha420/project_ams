@@ -11,11 +11,13 @@ class CustomUserRegistrationForm(UserCreationForm):
     image = forms.ImageField(required=False)
     class Meta:
         model = User
-        fields = ['name', 'email', 'mobile', 'password1', 'password2']
+        # Use actual User model fields; name/mobile are extra form-only fields
+        fields = ['username', 'email', 'password1', 'password2']
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.username = self.cleaned_data['name']  # use name as username
+        # use the provided name as the username to keep existing behavior
+        user.username = self.cleaned_data['name']
         user.email = self.cleaned_data['email']
 
         if commit:
@@ -27,7 +29,9 @@ class CustomUserRegistrationForm(UserCreationForm):
                 image=self.cleaned_data.get('image')
             )
 
-            return user
+
+
+        return user
     
     
 class ShowForm(forms.ModelForm):

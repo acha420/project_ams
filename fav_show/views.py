@@ -10,14 +10,16 @@ from .forms import UserUpdateForm, ProfileUpdateForm
 from .models import Profile
 
 def home(request):
-    from .models import Shows
-    print(Shows.objects.all())
     shows = Shows.objects.all()
     return render(request, 'home.html', {'shows': shows})
 
+@login_required
+def contact(request):
+    return render(request, 'contact.html')
+
 def signup(request):
     if request.method == 'POST':
-        form = CustomUserRegistrationForm(request.POST)
+        form = CustomUserRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('login')
@@ -25,9 +27,6 @@ def signup(request):
         form = CustomUserRegistrationForm()
 
     return render(request, 'signup.html', {'form': form})
-
-def login(request):
-    return render(request, 'login.html')
 
 @login_required
 def upload(request):
@@ -69,8 +68,11 @@ def delete_show(request, id):
     if shows.user != request.user:
         return HttpResponseForbidden("You cannot delete this.")
 
-    shows.delete()
-    return redirect('home')
+    if request.method == 'POST':
+        shows.delete()
+        return redirect('home')
+
+    return HttpResponseForbidden("Invalid request method.")
 
 @login_required
 def my_shows(request):

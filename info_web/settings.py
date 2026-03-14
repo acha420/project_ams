@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+ro(%bjmtvsjz^4e5j$#mtg-#j0$y*oiy0jh1=k4bi5p!)%lwb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -47,8 +47,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'info_web.urls'
@@ -118,7 +116,7 @@ Static files (CSS, JavaScript, Images)
 https://docs.djangoproject.com/en/6.0/howto/static-files/
 """
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files
 STATICFILES_DIRS = [
